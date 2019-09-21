@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Combi : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class Combi : MonoBehaviour
 
     public Rigidbody rb;
     public float jumpForce = 1f;
+
+    public Text text;
+
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +66,13 @@ public class Combi : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision) {
-        canJump = true;
+        if (collision.gameObject.tag == "Ground")
+            canJump = true;
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            text.text = "Dead";
+        }
     }
 
 
